@@ -1,6 +1,7 @@
 package com.login.login.igu;
 
 import com.login.login.logic.Controller;
+import com.login.login.logic.User;
 
 
 public class Main extends javax.swing.JFrame {
@@ -150,9 +151,25 @@ public class Main extends javax.swing.JFrame {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         String userName = txtUserName.getText();
         String password = txtPassword.getText();
+        User user = controller.validateUser(userName,password);
         
-        String message = controller.validateUser(userName,password);
-        txtObservation.setText(message);
+        if(user!=null){
+            String rol = user.getOneRol().getRolName();
+            if(rol.equals("admin")){
+                MainAdmin mainAdmin = new MainAdmin(controller,user);
+                mainAdmin.setVisible(true);
+                mainAdmin.setLocationRelativeTo(null);
+                this.dispose();
+            }
+            if(rol.equals("user")){
+                MainUser mainUser = new MainUser(controller,user);
+                mainUser.setVisible(true);
+                mainUser.setLocationRelativeTo(null);
+                this.dispose();
+            }
+        }else{
+            txtObservation.setText("Usuario o contraseña incorrecta");
+        }   
     }//GEN-LAST:event_btnLoginActionPerformed
 
 

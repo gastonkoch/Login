@@ -3,6 +3,7 @@
   <persistence-unit name="loginPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.login.login.logic.User</class>
+    <class>com.login.login.logic.Rol</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/login?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
